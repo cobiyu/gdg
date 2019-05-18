@@ -14,17 +14,17 @@
 
             <div class="grid-content" v-for="(chat, index) in chatList" :key="index">
               <div v-if="chat.mode==='my'" style="text-align: right; display: block; clear: both;">
-                <my-chat user-name="testName"
+                <my-chat user-name="GDG"
                          :image-path="chat.img.images.downsized.url"
-                         time-stamp="12:45:12">
+                         :time-stamp="chat.timestamp">
 
                 </my-chat>
               </div>
 
               <div v-else-if="chat.mode==='user'" style="text-align: left;">
-                <user-chat user-name="testName"
+                <user-chat user-name="yucobi"
                            :image-path="chat.img.images.downsized.url"
-                           time-stamp="12:45:12">
+                           :time-stamp="chat.timestamp">
 
                 </user-chat>
               </div>
@@ -64,6 +64,8 @@ import MyChat from './components/MyChat'
 
 import SearchBar from "./components/SearchBar";
 import ImageList from "./components/ImageList";
+
+import moment from 'moment'
 export default {
 
     name: 'app',
@@ -85,7 +87,7 @@ export default {
             let chatObj = {
                 mode : this.mode,
                 img : img,
-                timestamp : 'timestamp'
+                timestamp : moment().format('YYYY-MM-DD HH:mm:ss')
             };
             this.chatList.push(chatObj);
             setTimeout(function () { // ㅋㅋㅋㅌ 금단의 방법
