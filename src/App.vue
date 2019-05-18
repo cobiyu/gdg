@@ -9,7 +9,7 @@
     </el-row>
     <el-row>
       <el-col :span="12" class="chat">
-        <el-row style="overflow:scroll; width:100%; height:500px">
+        <el-row style="overflow:scroll; width:100%; height:800px" id="chat-box">
           <el-col :span="24">
 
             <div class="grid-content" v-for="(chat, index) in chatList" :key="index">
@@ -34,9 +34,9 @@
         </el-row>
       </el-col>
 
-      <el-col :span="12" class="chat">
+      <el-col :span="12" class="chat" style="height: 800px">
         <el-row>
-          <el-col :span="24">
+          <el-col :span="24" style="height: 690px; overflow: scroll">
             <div class="grid-content bg-purple-dark">
 
               <ImageList :images="searchResults" @selectImage="selectImage"></ImageList>
@@ -86,8 +86,12 @@ export default {
                 mode : this.mode,
                 img : img,
                 timestamp : 'timestamp'
-            }
-            this.chatList.push(chatObj)
+            };
+            this.chatList.push(chatObj);
+            setTimeout(function () { // ㅋㅋㅋㅌ 금단의 방법
+              let chatBox = document.getElementById('chat-box');
+              chatBox.scrollTop=chatBox.scrollHeight;
+            }, 200);
         },
         updateSearchResults(results) {
             this.searchResults = results
