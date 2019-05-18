@@ -55,9 +55,9 @@
         </el-row>
       </el-col>
 
-      <el-col :span="12" class="chat">
+      <el-col :span="12" class="chat" style="height: 500px">
         <el-row>
-          <el-col :span="24">
+          <el-col :span="24" style="height: 390px; overflow: scroll">
             <div class="grid-content bg-purple-dark">
 
               <ImageList :images="searchResults" @selectImage="selectImage"></ImageList>
