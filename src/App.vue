@@ -12,28 +12,7 @@
         <el-row style="overflow:scroll; width:100%; height:500px">
           <el-col :span="24">
 
-
-            <div style="text-align: right; display: block; clear: both;">
-              <div style="text-align: left;">
-                <user-chat user-name="testName"
-                           image-path="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                           time-stamp="12:45:12">
-
-                </user-chat>
-              </div>
-            </div>
-
-            <div class="grid-content">
-              <div style="text-align: right; display: block; clear: both;">
-                <my-chat user-name="testName"
-                         image-path="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                         time-stamp="12:45:12">
-
-                </my-chat>
-              </div>
-            </div>
-
-            <div class="grid-content" v-for="chat in chatList" :key="chat.img.images.downsized.url">
+            <div class="grid-content" v-for="(chat, index) in chatList" :key="index">
               <div v-if="chat.mode==='my'" style="text-align: right; display: block; clear: both;">
                 <my-chat user-name="testName"
                          :image-path="chat.img.images.downsized.url"
