@@ -71,7 +71,9 @@
             <div class="grid-content">search</div>
           </el-col>
           <el-col :span="24">
-            <div class="grid-content">input</div>
+            <div class="grid-content bg-purple-dark">GIF 검색
+                <SearchBar @update="updateSearchResults"></SearchBar>
+            </div>
           </el-col>
         </el-row>
       </el-col>
@@ -83,16 +85,23 @@
 import UserChat from './components/UserChat'
 import MyChat from './components/MyChat'
 
+import SearchBar from "./components/SearchBar";
 export default {
     name: 'app',
     components: {
       'user-chat' : UserChat,
       'my-chat' : MyChat,
+        SearchBar
     },
     data(){
       return {
-
+          'searchResults': []
       }
+    },
+    methods :{
+        updateSearchResults(results) {
+            this.searchResults = results
+        }
     }
 }
 </script>
