@@ -11,6 +11,8 @@
       <el-col :span="12" class="chat">
         <el-row style="overflow:scroll; width:100%; height:500px">
           <el-col :span="24">
+
+
             <div style="text-align: right; display: block; clear: both;">
               <div style="text-align: left;">
                 <user-chat user-name="testName"
@@ -31,33 +33,21 @@
               </div>
             </div>
 
-            <div class="grid-content">
-              <div style="text-align: left;">
+            <div class="grid-content" v-for="chat in chatList" :key="chat.img.images.downsized.url">
+              <div v-if="chat.mode==='my'" style="text-align: right; display: block; clear: both;">
+                <my-chat user-name="testName"
+                         :image-path="chat.img.images.downsized.url"
+                         time-stamp="12:45:12">
+
+                </my-chat>
+              </div>
+
+              <div v-else-if="chat.mode==='user'" style="text-align: left;">
                 <user-chat user-name="testName"
-                           image-path="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+                           :image-path="chat.img.images.downsized.url"
                            time-stamp="12:45:12">
 
                 </user-chat>
-              </div>
-            </div>
-
-            <div class="grid-content">
-              <div style="text-align: right; display: block; clear: both;">
-                <my-chat user-name="testName"
-                         image-path="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                         time-stamp="12:45:12">
-
-                </my-chat>
-              </div>
-            </div>
-
-            <div class="grid-content">
-              <div style="text-align: right; display: block; clear: both;">
-                <my-chat user-name="testName"
-                         image-path="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                         time-stamp="12:45:12">
-
-                </my-chat>
               </div>
             </div>
 
@@ -70,7 +60,7 @@
           <el-col :span="24">
             <div class="grid-content bg-purple-dark">
 
-              <ImageList :images="searchResults"></ImageList>
+              <ImageList :images="searchResults" @selectImage="selectImage"></ImageList>
             </div>
           </el-col>
           <el-col :span="24">
@@ -81,6 +71,11 @@
         </el-row>
       </el-col>
     </el-row>
+
+    <select v-model="mode">
+      <option value="my">my</option>
+      <option value="user">user</option>
+    </select>
   </div>
 </template>
 
@@ -101,10 +96,20 @@ export default {
     },
     data(){
       return {
-          'searchResults': []
+          'mode' : "my",
+          'searchResults': [],
+          'chatList' : [],
       }
     },
     methods :{
+        selectImage (img){
+            let chatObj = {
+                mode : this.mode,
+                img : img,
+                timestamp : 'timestamp'
+            }
+            this.chatList.push(chatObj)
+        },
         updateSearchResults(results) {
             this.searchResults = results
         }
