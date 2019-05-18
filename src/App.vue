@@ -39,7 +39,10 @@
       <el-col :span="12">
         <el-row>
           <el-col :span="24">
-            <div class="grid-content bg-purple-dark">search</div>
+            <div class="grid-content bg-purple-dark">
+
+              <ImageList :images="searchResults"></ImageList>
+            </div>
           </el-col>
           <el-col :span="24">
             <div class="grid-content bg-purple-dark">GIF 검색
@@ -56,9 +59,11 @@
 
 
 import SearchBar from "./components/SearchBar";
+import ImageList from "./components/ImageList";
 export default {
   name: 'app',
   components: {
+      ImageList,
       SearchBar
   },
   data () {
