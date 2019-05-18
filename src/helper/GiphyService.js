@@ -7,7 +7,7 @@ const service = axios.create({
   timeout: 5000,
 });
 
-export const searchGIFs = (query, limit=14) => {
+export const searchGIFs = (query, limit=7) => {
   return service({
       url: '/gifs/search?' + 'q=' + query + '&limit=' + limit + '&api_key=' + APIKEY
   })

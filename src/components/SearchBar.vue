@@ -7,6 +7,7 @@
 
 <script>
     import { searchGIFs } from '@/helper/GiphyService';
+    import { Loading } from 'element-ui';
 
     export default {
         name: "SearchBar",
@@ -16,9 +17,12 @@
             }
         },
         methods : {
+
             search() {
+                let loadingInstance = Loading.service({fullscreen: true});
                 searchGIFs(this.query).then((response) =>{
                     this.$emit('update', response.data.data);
+                    loadingInstance.close();
                 })
             }
         }
