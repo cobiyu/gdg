@@ -68,7 +68,10 @@
       <el-col :span="12" class="chat">
         <el-row>
           <el-col :span="24">
-            <div class="grid-content">search</div>
+            <div class="grid-content bg-purple-dark">
+
+              <ImageList :images="searchResults"></ImageList>
+            </div>
           </el-col>
           <el-col :span="24">
             <div class="grid-content bg-purple-dark">GIF 검색
@@ -86,12 +89,15 @@ import UserChat from './components/UserChat'
 import MyChat from './components/MyChat'
 
 import SearchBar from "./components/SearchBar";
+import ImageList from "./components/ImageList";
 export default {
+
     name: 'app',
     components: {
       'user-chat' : UserChat,
       'my-chat' : MyChat,
-        SearchBar
+        SearchBar,
+        ImageList
     },
     data(){
       return {
