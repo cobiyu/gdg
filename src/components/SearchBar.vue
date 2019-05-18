@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-input v-model="query" @:keyup.enter="search"></el-input>
+        <el-input v-model="query" @keyup.enter.native="search"></el-input>
         <el-button v-on:click="search">검색</el-button>
     </div>
 </template>
